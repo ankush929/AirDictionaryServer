@@ -11,6 +11,7 @@ require('./models/GlobalWords')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var globalWordsRouter = require('./routes/globalwords');
 
 var app = express();
 
@@ -26,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/globalwords', globalWordsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,7 +47,6 @@ app.use(function(err, req, res, next) {
 });
 
 //connecting to mongodb database. Make sure mongodb is running
-
 mongoose.connect('mongodb://localhost/AirDictionaryDB');
 
 module.exports = app;
