@@ -4,8 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-//for mongodb
-var mongoose = require("mongoose")
+// for mongodb init
+var mongoose = require("mongoose");
+require('./models/Users');
+require('./models/GlobalWords')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -40,5 +42,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//connecting to mongodb database. Make sure mongodb is running
+
+mongoose.connect('mongodb://localhost/AirDictionaryDB');
 
 module.exports = app;
